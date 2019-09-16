@@ -125,8 +125,8 @@ class BaseSetting(object):
 
 # 修改xadmin的全局配置
 class GlobalSetting(object):
-    site_title = '牛氏圆柔正骨术'
-    site_footer = '2019'
+    site_title = 'IT老王很年轻'
+    site_footer = '2019 IT老王很年轻|京ICP备19016663号'
 
     # Models收起功能
     # menu_style = 'accordion'
