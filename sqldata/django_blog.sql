@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : myslq_django
+ Source Server         : mysql_django
  Source Server Type    : MySQL
- Source Server Version : 50726
+ Source Server Version : 50727
  Source Host           : localhost:3306
  Source Schema         : django_blog
 
  Target Server Type    : MySQL
- Target Server Version : 50726
+ Target Server Version : 50727
  File Encoding         : 65001
 
- Date: 16/09/2019 08:26:47
+ Date: 23/09/2019 19:11:19
 */
 
 SET NAMES utf8mb4;
@@ -202,7 +202,7 @@ CREATE TABLE `auth_user` (
 -- Records of auth_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `auth_user` VALUES (1, 'pbkdf2_sha256$100000$115YxmXr6HOS$kcYPWvuhYeRV2cDMrKNVqohrlLTaZ9mSLvTQUMRpiYE=', '2019-09-16 00:03:03.849572', 1, 'IT老王', '', '', 'cctvjiatao@163.com', 1, 1, '2019-09-15 22:22:00.000000');
+INSERT INTO `auth_user` VALUES (1, 'pbkdf2_sha256$100000$115YxmXr6HOS$kcYPWvuhYeRV2cDMrKNVqohrlLTaZ9mSLvTQUMRpiYE=', '2019-09-23 09:17:05.803596', 1, 'IT老王', '', '', 'cctvjiatao@163.com', 1, 1, '2019-09-15 22:22:00.000000');
 COMMIT;
 
 -- ----------------------------
@@ -252,7 +252,14 @@ CREATE TABLE `blog_book` (
   PRIMARY KEY (`id`),
   KEY `blog_book_category_id_bbe7f5c4_fk_blog_bookcategory_id` (`category_id`),
   CONSTRAINT `blog_book_category_id_bbe7f5c4_fk_blog_bookcategory_id` FOREIGN KEY (`category_id`) REFERENCES `blog_bookcategory` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of blog_book
+-- ----------------------------
+BEGIN;
+INSERT INTO `blog_book` VALUES (1, '论语新解', '钱穆', 'books/book_lunyuxinjie.jpg', 9.0, '2019-09-16', '2019/09/16', '3', 1);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for blog_book_tag
@@ -267,7 +274,14 @@ CREATE TABLE `blog_book_tag` (
   KEY `blog_book_tag_booktag_id_e42c6960_fk_blog_booktag_id` (`booktag_id`),
   CONSTRAINT `blog_book_tag_book_id_d99bdad3_fk_blog_book_id` FOREIGN KEY (`book_id`) REFERENCES `blog_book` (`id`),
   CONSTRAINT `blog_book_tag_booktag_id_e42c6960_fk_blog_booktag_id` FOREIGN KEY (`booktag_id`) REFERENCES `blog_booktag` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of blog_book_tag
+-- ----------------------------
+BEGIN;
+INSERT INTO `blog_book_tag` VALUES (1, 1, 1);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for blog_bookcategory
@@ -277,7 +291,19 @@ CREATE TABLE `blog_bookcategory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of blog_bookcategory
+-- ----------------------------
+BEGIN;
+INSERT INTO `blog_bookcategory` VALUES (1, '国学');
+INSERT INTO `blog_bookcategory` VALUES (2, '教育');
+INSERT INTO `blog_bookcategory` VALUES (3, '科技');
+INSERT INTO `blog_bookcategory` VALUES (4, '商业');
+INSERT INTO `blog_bookcategory` VALUES (5, '经济');
+INSERT INTO `blog_bookcategory` VALUES (6, 'IT');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for blog_booktag
@@ -287,7 +313,15 @@ CREATE TABLE `blog_booktag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of blog_booktag
+-- ----------------------------
+BEGIN;
+INSERT INTO `blog_booktag` VALUES (1, '经典');
+INSERT INTO `blog_booktag` VALUES (2, '前沿');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for blog_category
@@ -297,7 +331,7 @@ CREATE TABLE `blog_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_category
@@ -311,6 +345,7 @@ INSERT INTO `blog_category` VALUES (5, '国学');
 INSERT INTO `blog_category` VALUES (6, '时事');
 INSERT INTO `blog_category` VALUES (7, '金融');
 INSERT INTO `blog_category` VALUES (8, '培训');
+INSERT INTO `blog_category` VALUES (9, '投资');
 COMMIT;
 
 -- ----------------------------
@@ -412,7 +447,17 @@ CREATE TABLE `blog_movie` (
   PRIMARY KEY (`id`),
   KEY `blog_movie_category_id_53ed0a3a_fk_blog_moviecategory_id` (`category_id`),
   CONSTRAINT `blog_movie_category_id_53ed0a3a_fk_blog_moviecategory_id` FOREIGN KEY (`category_id`) REFERENCES `blog_moviecategory` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of blog_movie
+-- ----------------------------
+BEGIN;
+INSERT INTO `blog_movie` VALUES (1, '杀人回忆', '奉俊昊', '宋康昊', 'movies/movie_sharenhuiyi.jpg', 8.8, '2003-05-02', '2019-09-23', 131, '2019-09-20', '', 1);
+INSERT INTO `blog_movie` VALUES (2, '那家伙的声音', '朴镇彪', '薛耿求 金南珠', 'movies/movie_najiahuodeshengyin.jpg', 7.5, '2007-02-01', '2019-09-23', 122, '2019-09-22', '', 1);
+INSERT INTO `blog_movie` VALUES (3, '孩子们', '李圭满', '朴勇宇 柳承龙 成东日 朱进模 成志娄', 'movies/movie_haizimen.jpg', 7.4, '2011-02-17', '2019-09-23', 132, '2019-09-24', '', 1);
+INSERT INTO `blog_movie` VALUES (4, '一级机密', '洪基善', '金相庆 金玉彬 崔武成 崔奎华 金炳哲', 'movies/movie_yijijimi.jpg', 7.2, '2017-07-20', '2019-09-23', 101, '2019-09-28', '', 1);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for blog_movie_tag
@@ -427,7 +472,17 @@ CREATE TABLE `blog_movie_tag` (
   KEY `blog_movie_tag_movietag_id_962e19f2_fk_blog_movietag_id` (`movietag_id`),
   CONSTRAINT `blog_movie_tag_movie_id_8136471f_fk_blog_movie_id` FOREIGN KEY (`movie_id`) REFERENCES `blog_movie` (`id`),
   CONSTRAINT `blog_movie_tag_movietag_id_962e19f2_fk_blog_movietag_id` FOREIGN KEY (`movietag_id`) REFERENCES `blog_movietag` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of blog_movie_tag
+-- ----------------------------
+BEGIN;
+INSERT INTO `blog_movie_tag` VALUES (1, 1, 1);
+INSERT INTO `blog_movie_tag` VALUES (2, 2, 1);
+INSERT INTO `blog_movie_tag` VALUES (3, 3, 1);
+INSERT INTO `blog_movie_tag` VALUES (4, 4, 1);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for blog_moviecategory
@@ -437,7 +492,14 @@ CREATE TABLE `blog_moviecategory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of blog_moviecategory
+-- ----------------------------
+BEGIN;
+INSERT INTO `blog_moviecategory` VALUES (1, '真实事件');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for blog_movietag
@@ -447,7 +509,14 @@ CREATE TABLE `blog_movietag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of blog_movietag
+-- ----------------------------
+BEGIN;
+INSERT INTO `blog_movietag` VALUES (1, '韩国');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for blog_post
@@ -472,14 +541,16 @@ CREATE TABLE `blog_post` (
   KEY `blog_post_category_id_c326dbf8_fk_blog_category_id` (`category_id`),
   CONSTRAINT `blog_post_author_id_dd7a8485_fk_auth_user_id` FOREIGN KEY (`author_id`) REFERENCES `auth_user` (`id`),
   CONSTRAINT `blog_post_category_id_c326dbf8_fk_blog_category_id` FOREIGN KEY (`category_id`) REFERENCES `blog_category` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_post
 -- ----------------------------
 BEGIN;
-INSERT INTO `blog_post` VALUES (1, '雄安新区构建“四位一体”智能城市系统', '![](/media/editor/xiongan_20190916070657701360.jpg)\r\n9月13日下午至14日，河北省省委书记、省人大常委会主任王东峰在雄安新区连续召开河北雄安新区规划建设工作领导小组专题会议。会议强调，要加强卫星信息传输、感知系统、5G基站、通讯和宽带技术等智能基础设施建设，推进互联网、物联网、局域网建设，建立雄安新区信息中心、超算中心、大数据交易中心、指挥调度中心，打造高标准雄安“智慧大脑”。\r\n\r\n会议强调，要扎实推进雄安智能城市建设，建立健全智能城市标准体系、终端使用标准体系、技术标准体系，构建天上、地上、地下、终端“四位一体”智能城市系统。要加强卫星信息传输、感知系统、5G基站、通讯和宽带技术等智能基础设施建设，推进互联网、物联网、局域网建设，建立雄安新区信息中心、超算中心、大数据交易中心、指挥调度中心，打造高标准雄安“智慧大脑”。要强化终端利用，提高现代办公、城市管理、工程建设、公共交通、惠民服务、企业诚信体系和社会征信体系建设等领域智能化水平，建立全域覆盖、万物互联的终端应用系统。要开展对网络建设和运行的监督检测，加强信息化体系安全保护，切实防范化解风险，确保雄安新区智能城市系统高效安全运行。', '2019-09-14 23:02:00.000000', '2019-09-15 23:15:47.735410', '扎实推进雄安智能城市建设，建立健全智能城市标准体系、终端使用标准体系、技术标准体系，构建天上、地上、地下、终端“四位一体”智能城市系统。', 1, 525, 'p', 'n', 1, 6);
-INSERT INTO `blog_post` VALUES (2, '天津将出台氢能产业发展行动方案 2022年总产值预计超百亿元', '![天津氢能源](/media/editor/tianjin_20190916071238320092.jpg)\r\n9月15日，天津市发改委编制的《天津市氢能产业发展行动方案（2019—2022年）》中提出了天津市氢能产业发展的顶层设计。据悉，到2022年，天津市将初步打造形成氢能全产业链发展格局，预计行业总产值将突破百亿元。在充分吸取专家意见基础上，天津市发改委将对《行动方案》进一步修改完善，本月报经天津市政府审定后出台。\r\n\r\n《行动方案》提出了18项重点任务，旨在依托京津冀协同发展区位优势，聚焦制约氢能产业发展的核心问题，通过引导产业链和创新链深度融合，为经济发展培育新的增长点。根据《行动方案》，天津将打造三个试点示范区，重点在交通领域推广应用氢燃料电池物流车、公交车、叉车等，并配套建设商业加氢站，保障气源安全稳定供应。此外，《行动方案》还制定了保障措施及配套财政支持政策，将对天津进一步优化营商环境，加快招引行业优势企业起到重要推动作用。', '2019-09-15 23:09:00.000000', '2019-09-15 23:14:25.262540', '9月15日，天津市发改委编制的《天津市氢能产业发展行动方案（2019—2022年）》中提出了天津市氢能产业发展的顶层设计。', 3, 425, 'p', 'n', 1, 6);
+INSERT INTO `blog_post` VALUES (1, '【资讯】雄安新区构建“四位一体”智能城市系统', '![](/media/editor/xiongan_20190916070657701360.jpg)\r\n9月13日下午至14日，河北省省委书记、省人大常委会主任王东峰在雄安新区连续召开河北雄安新区规划建设工作领导小组专题会议。会议强调，要加强卫星信息传输、感知系统、5G基站、通讯和宽带技术等智能基础设施建设，推进互联网、物联网、局域网建设，建立雄安新区信息中心、超算中心、大数据交易中心、指挥调度中心，打造高标准雄安“智慧大脑”。\r\n\r\n会议强调，要扎实推进雄安智能城市建设，建立健全智能城市标准体系、终端使用标准体系、技术标准体系，构建天上、地上、地下、终端“四位一体”智能城市系统。要加强卫星信息传输、感知系统、5G基站、通讯和宽带技术等智能基础设施建设，推进互联网、物联网、局域网建设，建立雄安新区信息中心、超算中心、大数据交易中心、指挥调度中心，打造高标准雄安“智慧大脑”。要强化终端利用，提高现代办公、城市管理、工程建设、公共交通、惠民服务、企业诚信体系和社会征信体系建设等领域智能化水平，建立全域覆盖、万物互联的终端应用系统。要开展对网络建设和运行的监督检测，加强信息化体系安全保护，切实防范化解风险，确保雄安新区智能城市系统高效安全运行。', '2019-09-14 23:02:00.000000', '2019-09-16 02:56:53.785672', '扎实推进雄安智能城市建设，建立健全智能城市标准体系、终端使用标准体系、技术标准体系，构建天上、地上、地下、终端“四位一体”智能城市系统。', 1, 525, 'p', 'n', 1, 6);
+INSERT INTO `blog_post` VALUES (2, '【资讯】天津将出台氢能产业发展行动方案 2022年总产值预计超百亿元', '![天津氢能源](/media/editor/tianjin_20190916071238320092.jpg)\r\n9月15日，天津市发改委编制的《天津市氢能产业发展行动方案（2019—2022年）》中提出了天津市氢能产业发展的顶层设计。据悉，到2022年，天津市将初步打造形成氢能全产业链发展格局，预计行业总产值将突破百亿元。在充分吸取专家意见基础上，天津市发改委将对《行动方案》进一步修改完善，本月报经天津市政府审定后出台。\r\n\r\n《行动方案》提出了18项重点任务，旨在依托京津冀协同发展区位优势，聚焦制约氢能产业发展的核心问题，通过引导产业链和创新链深度融合，为经济发展培育新的增长点。根据《行动方案》，天津将打造三个试点示范区，重点在交通领域推广应用氢燃料电池物流车、公交车、叉车等，并配套建设商业加氢站，保障气源安全稳定供应。此外，《行动方案》还制定了保障措施及配套财政支持政策，将对天津进一步优化营商环境，加快招引行业优势企业起到重要推动作用。', '2019-09-15 23:09:00.000000', '2019-09-16 02:56:42.739864', '9月15日，天津市发改委编制的《天津市氢能产业发展行动方案（2019—2022年）》中提出了天津市氢能产业发展的顶层设计。', 4, 425, 'p', 'n', 1, 6);
+INSERT INTO `blog_post` VALUES (3, '【读书】论语新解', '## 学而篇第一\r\n### （一）\r\n> 子曰：“学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知而不愠，不亦君子乎？”\r\n\r\n先生说：“学能时时反复习之，我心不很觉欣畅吗？有许多朋友从远而来，我心不更感快乐吗？别人不知道我，我心不存些微怫郁不欢之意，不真是一位修养有成德的君子吗？”', '2019-09-16 02:39:00.000000', '2019-09-16 02:57:06.951450', '子曰：“学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知而不愠，不亦君子乎？”', 7, 137, 'p', 'n', 1, 5);
+INSERT INTO `blog_post` VALUES (4, '【投资】人往往高估一年的变化，但低估五年的变化', '“人往往会高估一年时间发生的变化，但低估五年时间发生的变化。”\r\n\r\n这句话不知道是谁的原创，有说是彼得·德鲁克，也有看到引用比尔·盖茨，李开复、薛兆丰等等总之很多人都说过。不过我最早是从《东吴相对论》吴伯凡那边听到的，当时觉得醍醐灌顶。\r\n\r\n（一）\r\n\r\n最近的一次感慨，是关于新能源车。\r\n\r\n因为工作关系，时不时会使用滴滴。越来越经常打到的，是新能源车。自己开车的时候，也发现路上代表新能源的绿色车牌越来越多，包括长安、北汽、比亚迪，乃至长城的欧拉，什么云度汽车（我至今不太了解这家），间或看到的特斯拉、蔚来、小鹏之类，都觉得还挺惊艳的。\r\n\r\n这还只是在三四线城市，有些一线城市，好像燃油车早就禁牌了吧？是不是满街电动？\r\n\r\n以前看到绿牌车还觉得挺新奇，现在开车在路上似乎不看到绿牌都难。而且，有点气人的是，绿牌的车牌号总是更好，尽管不少似乎是“骗”补贴的烂车。\r\n\r\n有一天跟滴滴师傅聊天。问这车能开多长啊？300公里。哦，那在城里开都没啥问题……充电得多久啊？一个小时。都哪里充啊？就刚才接你那个山头那边就有一个充电站。哦？那现在这种充电站不多吧？师傅说：是你们不知道而已，其实到处都有。\r\n\r\n我才突然想起文章开头那句话：人往往会高估一年时间发生的变化，但低估五年时间发生的变化。\r\n\r\n大家想想身边刚看到头几辆新能源车的时候，是哪一年？到现在，差不多也是五年左右吧。我们是不是迎来了新能源车的一个拐点呢？\r\n\r\n曾经我并不太看好新能源车，确实很多垃圾车型在“骗补”，实质的技术上并没什么真正突破，出来的产品也缺乏诚意。但是随着时间推移，积累的量变很可能会导致质变，包括技术的改进和升级迭代，政策的落地施行，基础设施的完善，等等。突然意识到，乘用车这个市场，天翻地覆的那一刻，可能就在不远的前方了。\r\n\r\n毕竟，一旦充电跟加油差不多方便的话，也看不太出电动车替代燃油车的阻碍了。想当年，就政令一下，城里禁了摩托车，电动助力车自然而然地蓬勃发展起来了，不过用了几年时间。\r\n\r\n（二）\r\n\r\n再遥想一下智能手机的发展路径。\r\n\r\n苹果公司第一代的iPhone在2007年发布，然后开始进入了3G时代，又发布了第二代的iPhone 3G，是在2008年6月。\r\n\r\n而功能机霸主诺基亚（Nokia），甚至在iPhone面世之后，它也仍推出了E系列等热卖的商务机型。但后来的故事大家都知道了，跟不上时代，就被时代无情地碾压。2013年9月，诺基亚委身卖给了微软。\r\n\r\n你看一下从苹果iPhone的诞生到诺基亚的陨落，间隔差不多也就五年左右。而在变化刚开的那一年，也就是08年、09年那阵子，我还去买了诺基亚的E71——全键盘却不觉大，还挺轻薄的，用起来得心应手——全然未感受到大变革即将来临。\r\n\r\n既然说到智能手机……\r\n\r\n华为的P系列首款机型P1大概是2012年发售，Mate系列首款机型大概是2013年发售。彼时，三星的Galaxy系列旗舰大概是出到S3、S4，在Android 阵营中如日中天。\r\n\r\n五年过后……反正到了2019年华为手机的销售份额已经是全球第一了；而三星2018年的时候在中国市场销售份额就不到1%了，溃败得如此之迅速，很多业内人士都有点错愕，毕竟人家的手机质量还是保持在一线水准，怎么在国内就卖成这样了？\r\n\r\n只用了五年，有些公司就翻天覆地。究竟发生了什么？甚至都说不大清楚。\r\n\r\n（三）\r\n\r\n然后我们再来说一说5G。\r\n\r\n说5G之前，先说说4G。2013年12月工信部向三家运营商发放了4G牌照，所以2014年可谓中国4G元年。五年后的今天，除了手机市场的格局沧海桑田之外，我们的生活方式也都发生了巨大改变。\r\n\r\n比如……你还记得上一次使用现金是什么时候吗？如今连菜市场买菜、路边停车等等都手机支付替代了。前几天小孩开学订阅期刊，要带钱到学校去交，我愣是在家里东拼西凑了半天零钱。\r\n\r\n起初谁又能想到一个无线通信技术的升级换代，竟能对金融领域造成如此大的变革？\r\n\r\n所以5G很可能也会是类似的道理。我们现在往往看不清变化的方向，但是变化仍然会难以阻挡地发生。过个一年，你可能觉得失望，平平无奇；过个五年，蓦然回首，发现好多东西都彻底不一样了。\r\n\r\n站在当下，我们绝大部分人确实是多半看不清5G未来发展和影响的。\r\n\r\n大家还记得3G刚推出的时候，运营商宣传的3G卖点是什么吗？是视频通话。结果呢，运营商的视频通话业务几乎全部胎死腹中。待到4G时代，反而是微信、苹果的FaceTime这些发展起来，以及我没怎么关注但知道已经火得不行的直播行业。\r\n\r\n这两年你听过的5G卖点又是什么？有说VR的。但我认为5G时代的VR很可能就像3G时的视频通话一样是个伪需求。有说无人智能驾驶的，但从技术难度和覆盖难度来看，估计五年还远远不够……\r\n\r\n前期我是看衰5G的。我对运营商这一行还算熟悉。4G投入才多久？覆盖还有多少死角？5G的应用又在哪里？设备商比如华为当然极力推动5G，但我知道运营商其实都不太想建5G网络，效益根本看不到。现在几乎所有主流的业内预测都说，国内5G还得3到5年才能有像样的网络。\r\n\r\n只不过，科技方面的预测向来容易打脸。让我们来看两个著名的案例：\r\n\r\n我觉得全世界可能只能卖出五台计算机吧。——沃森，IBM主席，1943\r\n\r\n\"I think there is a world market for maybe five computers.\" -- Thomas Watson, chairman of IBM, 1943\r\n\r\n640K内存妥妥够用了。——比尔·盖茨，1981\r\n\r\n\"640K ought to be enough for anybody.\" -- Bill Gates, 1981\r\n\r\n可想而知，下一代通讯技术肯定也会颠覆我们当前的生活。当然具体的时间跨度可能不止五年。但相信五年也足以发生许多事情了。\r\n\r\n我们不妨畅想一下，5G真正会带来哪些变化？\r\n\r\n首先，网速其实并不是4G的痛点。4G技术已经比我们很多人家里用的有线宽带更快了。相反，速度快了之后，很多用户更担心不小心产生高额流量费用——所以未来运营商几乎肯定会出现按网速/带宽收费的模式。\r\n\r\n4G的痛点我认为有两个。第一个是覆盖能力，这方面5G并不能更好地解决，反而频段更高，穿透更差。所以姑且按下不表。\r\n\r\n4G的第二个痛点是承载能力。肯定有人遇到过，比如一场爆满的演唱会现场，如果很多人都开高清视频直播……目前的情况是，有时连微信都不见得发得出去。\r\n\r\n5G的三大特性或者说优势：高速率、大容量、低时延。其中，很可能“大容量”才真正击中4G的痛点。\r\n\r\n未来，会是一个万物互联的社会，而5G为它提供了基础设施网络。无论是汽车、电动助力车、家用电器、安防监控、工业传感设备，乃至跑鞋、书包等等，恐怕都会联上网。\r\n\r\n值得提醒的是，诸如很多通用传感器、RFID芯片及读写器等产业，必然会大规模发展，但是并不存在太大的投资机会，因为未来那些都是最最基本的东西了，门槛极低，就好比现在做个充电宝之类的，能赚啥钱？\r\n\r\n无论是单机时代的微软，互联网时代和移动互联网时代的FAANG（Facebook+Amazon+Apple+Netflix+Google），国内的腾讯和阿里巴巴，真正赚钱的，似乎都是做系统和做平台的。\r\n\r\n五年之后，谁又会成为5G和万物互联的枢纽和霸主呢？小米？华为？抑或某家尚未崭露头角的新星？\r\n\r\n（四）\r\n\r\n投资的人生，好像也没有几个五年。\r\n\r\n我们高估过哪些短期变化，又低估过哪些长期变化呢？\r\n\r\n还记得曾经造就过一时中国首富的太阳能产业吗？经历各种亏损和幻灭，其实后来，中国的太阳能产业技术和制造能力确实成长起来了，领先全球，并且牢牢把握着市场份额。\r\n\r\n当前热炒5G概念股票的，当然基本都是傻子和投机客——尽管5G也必然在历经岁月之后改变我们的世界。\r\n\r\n新能源车？中国制造能否真的如许多人期望的那样，实现“弯道超车”？正如同家用电器和智能手机走过的路那般？\r\n\r\n……\r\n\r\n除了产业方面，还有市场方面。\r\n\r\n大家知道美国的股市参与者是以机构为主，而A股是以散户为主。但是这个结构什么时候开始变化了么？量变何时能积累成质变呢？大家可以自己去找找数据。\r\n\r\n再说个事情：港股通。2014年11月沪港通正式开通，南下资金逐渐流入港股市场……转眼，也快五年了。这五年里，港股表现依然比较低迷，AH价差甚至还有所扩大，但是未来谁又敢说不会来一场惊天巨变呢？\r\n\r\n许多大变化的发生，都不可能一蹴而就，然而水滴石穿也是亘古就有的道理。\r\n\r\n我们不应该高估短期变化，更不能低估长期变化。\r\n\r\n就投资而言，更重要的还是留意那些细小但能够日积月累的变化，不要着急做判断、下结论，因为这个世界的惯性实在太大；只需多一些耐心，它们终将汇成滔滔大河，冲刷我们既有的现实社会，最终形成一块崭新平原。', '2019-09-17 03:23:00.000000', '2019-09-17 03:25:59.634021', '这句话不知道是谁的原创，有说是彼得·德鲁克，也有看到引用比尔·盖茨，李开复、薛兆丰等等总之很多人都说过。不过我最早是从《东吴相对论》吴伯凡那边听到的，当时觉得醍醐灌顶。', 1, 3560, 'p', 'n', 1, 9);
 COMMIT;
 
 -- ----------------------------
@@ -495,7 +566,7 @@ CREATE TABLE `blog_post_tag` (
   KEY `blog_post_tag_tag_id_2bbd31e4_fk_blog_tag_id` (`tag_id`),
   CONSTRAINT `blog_post_tag_post_id_a5c00319_fk_blog_post_id` FOREIGN KEY (`post_id`) REFERENCES `blog_post` (`id`),
   CONSTRAINT `blog_post_tag_tag_id_2bbd31e4_fk_blog_tag_id` FOREIGN KEY (`tag_id`) REFERENCES `blog_tag` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_post_tag
@@ -503,6 +574,8 @@ CREATE TABLE `blog_post_tag` (
 BEGIN;
 INSERT INTO `blog_post_tag` VALUES (1, 1, 6);
 INSERT INTO `blog_post_tag` VALUES (2, 2, 6);
+INSERT INTO `blog_post_tag` VALUES (4, 3, 8);
+INSERT INTO `blog_post_tag` VALUES (5, 4, 5);
 COMMIT;
 
 -- ----------------------------
@@ -513,7 +586,7 @@ CREATE TABLE `blog_tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of blog_tag
@@ -526,6 +599,8 @@ INSERT INTO `blog_tag` VALUES (4, '生活');
 INSERT INTO `blog_tag` VALUES (5, '正经事');
 INSERT INTO `blog_tag` VALUES (6, '政策');
 INSERT INTO `blog_tag` VALUES (7, '搞笑');
+INSERT INTO `blog_tag` VALUES (8, '读书');
+INSERT INTO `blog_tag` VALUES (9, '电影');
 COMMIT;
 
 -- ----------------------------
@@ -683,6 +758,8 @@ CREATE TABLE `django_session` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `django_session` VALUES ('52gq022yibkcep7hbbcvkaq810jag2y3', 'NDg4YmJmZjQ5ZTRjMWQ2MzY3NTI2NWVmZGM1NmVmNDM3NGI1OWEyYzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1MTk1MmM4MWNiZDk2MTY5MWFhZTRhMGVjMDY3ODdjZjc0OWYwMzI3IiwiTElTVF9RVUVSWSI6W1sic2V0dGluZyIsInNvY2lhbCJdLCIiXX0=', '2019-09-30 00:25:06.152830');
+INSERT INTO `django_session` VALUES ('bdxcjsdj2o2jx8igyfc4hosg7igirl7l', 'YTJmZDk3ZmI1YmY0OGNkMzE3NzMzOWUxZTI0MzMwNzczYmViYWZmZjp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1MTk1MmM4MWNiZDk2MTY5MWFhZTRhMGVjMDY3ODdjZjc0OWYwMzI3IiwiTElTVF9RVUVSWSI6W1siYmxvZyIsInBvc3QiXSwiIl19', '2019-10-01 03:26:00.368938');
+INSERT INTO `django_session` VALUES ('uir8g5jgvninox3by4xiaw8xll4y74ag', 'MTI0MmZlMDgyOThiNzg1MWViYzlmNTk2YzMxNmVjZTEwODgwNDU4ZTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiI1MTk1MmM4MWNiZDk2MTY5MWFhZTRhMGVjMDY3ODdjZjc0OWYwMzI3IiwiTElTVF9RVUVSWSI6W1siYmxvZyIsIm1vdmllY2F0ZWdvcnkiXSwiIl19', '2019-10-07 09:31:21.250367');
 COMMIT;
 
 -- ----------------------------
@@ -730,7 +807,14 @@ CREATE TABLE `setting_customcode` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `statistics` longtext NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of setting_customcode
+-- ----------------------------
+BEGIN;
+INSERT INTO `setting_customcode` VALUES (1, '<script>\r\nvar _hmt = _hmt || [];\r\n(function() {\r\n  var hm = document.createElement(\"script\");\r\n  hm.src = \"https://hm.baidu.com/hm.js?6ee0763a6899e587470fe1124fa7238c\";\r\n  var s = document.getElementsByTagName(\"script\")[0]; \r\n  s.parentNode.insertBefore(hm, s);\r\n})();\r\n</script>');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for setting_friendlinks
@@ -747,7 +831,7 @@ CREATE TABLE `setting_friendlinks` (
 -- Records of setting_friendlinks
 -- ----------------------------
 BEGIN;
-INSERT INTO `setting_friendlinks` VALUES (1, '牛氏圆柔筋骨堂', 'https://www.0532zhenggu.com');
+INSERT INTO `setting_friendlinks` VALUES (1, '牛氏圆柔筋骨堂', 'http://www.0532zhenggu.com');
 INSERT INTO `setting_friendlinks` VALUES (2, '玩Android', 'https://www.wanandroid.com');
 INSERT INTO `setting_friendlinks` VALUES (3, '慕课网', 'https://www.imooc.com');
 COMMIT;
@@ -845,7 +929,7 @@ CREATE TABLE `xadmin_log` (
   KEY `xadmin_log_user_id_bb16a176_fk_auth_user_id` (`user_id`),
   CONSTRAINT `xadmin_log_content_type_id_2a6cb852_fk_django_content_type_id` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `xadmin_log_user_id_bb16a176_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of xadmin_log
@@ -884,6 +968,39 @@ INSERT INTO `xadmin_log` VALUES (30, '2019-09-16 00:20:34.656867', '127.0.0.1', 
 INSERT INTO `xadmin_log` VALUES (31, '2019-09-16 00:21:09.837941', '127.0.0.1', '2', 'FriendLinks object (2)', 'create', '已添加', 14, 1);
 INSERT INTO `xadmin_log` VALUES (32, '2019-09-16 00:21:43.065772', '127.0.0.1', '3', 'FriendLinks object (3)', 'create', '已添加', 14, 1);
 INSERT INTO `xadmin_log` VALUES (33, '2019-09-16 00:24:19.910570', '127.0.0.1', '1', 'Social object (1)', 'create', '已添加', 17, 1);
+INSERT INTO `xadmin_log` VALUES (34, '2019-09-16 02:28:43.231424', '127.0.0.1', '1', '国学', 'create', '已添加', 2, 1);
+INSERT INTO `xadmin_log` VALUES (35, '2019-09-16 02:28:48.695333', '127.0.0.1', '2', '教育', 'create', '已添加', 2, 1);
+INSERT INTO `xadmin_log` VALUES (36, '2019-09-16 02:28:52.588933', '127.0.0.1', '3', '科技', 'create', '已添加', 2, 1);
+INSERT INTO `xadmin_log` VALUES (37, '2019-09-16 02:28:56.471355', '127.0.0.1', '4', '商业', 'create', '已添加', 2, 1);
+INSERT INTO `xadmin_log` VALUES (38, '2019-09-16 02:29:05.072797', '127.0.0.1', '5', '经济', 'create', '已添加', 2, 1);
+INSERT INTO `xadmin_log` VALUES (39, '2019-09-16 02:29:11.061161', '127.0.0.1', '6', 'IT', 'create', '已添加', 2, 1);
+INSERT INTO `xadmin_log` VALUES (40, '2019-09-16 02:29:31.125124', '127.0.0.1', '1', '经典', 'create', '已添加', 3, 1);
+INSERT INTO `xadmin_log` VALUES (41, '2019-09-16 02:29:37.220561', '127.0.0.1', '2', '前沿', 'create', '已添加', 3, 1);
+INSERT INTO `xadmin_log` VALUES (42, '2019-09-16 02:38:08.110324', '127.0.0.1', '1', '论语新解', 'create', '已添加', 1, 1);
+INSERT INTO `xadmin_log` VALUES (43, '2019-09-16 02:50:22.296080', '127.0.0.1', '3', '【读书】论语新解', 'create', '已添加', 11, 1);
+INSERT INTO `xadmin_log` VALUES (44, '2019-09-16 02:50:31.934265', '127.0.0.1', '8', '读书', 'create', '已添加', 12, 1);
+INSERT INTO `xadmin_log` VALUES (45, '2019-09-16 02:50:37.579619', '127.0.0.1', '9', '电影', 'create', '已添加', 12, 1);
+INSERT INTO `xadmin_log` VALUES (46, '2019-09-16 02:50:55.679701', '127.0.0.1', '3', '【读书】论语新解', 'change', '修改 tag', 11, 1);
+INSERT INTO `xadmin_log` VALUES (47, '2019-09-16 02:51:06.714935', '127.0.0.1', '3', '【读书】论语新解', 'change', '修改 status', 11, 1);
+INSERT INTO `xadmin_log` VALUES (48, '2019-09-16 02:52:35.077431', '127.0.0.1', '1', '论语新解', 'change', '修改 pid', 1, 1);
+INSERT INTO `xadmin_log` VALUES (49, '2019-09-16 02:55:38.347368', '127.0.0.1', '3', '【读书】论语新解', 'change', '修改 body', 11, 1);
+INSERT INTO `xadmin_log` VALUES (50, '2019-09-16 02:56:42.855077', '127.0.0.1', '2', '【资讯】天津将出台氢能产业发展行动方案 2022年总产值预计超百亿元', 'change', '修改 title', 11, 1);
+INSERT INTO `xadmin_log` VALUES (51, '2019-09-16 02:56:53.918419', '127.0.0.1', '1', '【资讯】雄安新区构建“四位一体”智能城市系统', 'change', '修改 title', 11, 1);
+INSERT INTO `xadmin_log` VALUES (52, '2019-09-16 02:57:07.036351', '127.0.0.1', '3', '【读书】论语新解', 'change', '修改 status', 11, 1);
+INSERT INTO `xadmin_log` VALUES (53, '2019-09-16 02:57:53.222580', '127.0.0.1', '1', 'FriendLinks object (1)', 'change', '修改 link', 14, 1);
+INSERT INTO `xadmin_log` VALUES (54, '2019-09-16 03:05:37.874102', '127.0.0.1', '1', 'CustomCode object (1)', 'create', '已添加', 13, 1);
+INSERT INTO `xadmin_log` VALUES (55, '2019-09-17 03:23:40.603201', '127.0.0.1', '9', '投资', 'create', '已添加', 4, 1);
+INSERT INTO `xadmin_log` VALUES (56, '2019-09-17 03:25:45.418867', '127.0.0.1', '4', '人往往高估一年的变化，但低估五年的变化', 'create', '已添加', 11, 1);
+INSERT INTO `xadmin_log` VALUES (57, '2019-09-17 03:26:00.266303', '127.0.0.1', '4', '【投资】人往往高估一年的变化，但低估五年的变化', 'change', '修改 title', 11, 1);
+INSERT INTO `xadmin_log` VALUES (58, '2019-09-23 09:17:37.073661', '127.0.0.1', '1', '真实事件改编', 'create', '已添加', 9, 1);
+INSERT INTO `xadmin_log` VALUES (59, '2019-09-23 09:17:56.967526', '127.0.0.1', '1', '韩国', 'create', '已添加', 10, 1);
+INSERT INTO `xadmin_log` VALUES (60, '2019-09-23 09:20:20.717726', '127.0.0.1', '1', '杀人回忆', 'create', '已添加', 8, 1);
+INSERT INTO `xadmin_log` VALUES (61, '2019-09-23 09:20:30.729643', '127.0.0.1', '1', '杀人回忆', 'change', '没有数据变化', 8, 1);
+INSERT INTO `xadmin_log` VALUES (62, '2019-09-23 09:24:07.312178', '127.0.0.1', '2', '那家伙的声音', 'create', '已添加', 8, 1);
+INSERT INTO `xadmin_log` VALUES (63, '2019-09-23 09:26:40.888886', '127.0.0.1', '3', '孩子们', 'create', '已添加', 8, 1);
+INSERT INTO `xadmin_log` VALUES (64, '2019-09-23 09:26:59.354120', '127.0.0.1', '1', '杀人回忆', 'change', '修改 watch_time', 8, 1);
+INSERT INTO `xadmin_log` VALUES (65, '2019-09-23 09:29:47.114978', '127.0.0.1', '4', '一级机密', 'create', '已添加', 8, 1);
+INSERT INTO `xadmin_log` VALUES (66, '2019-09-23 09:31:21.166567', '127.0.0.1', '1', '真实事件', 'change', '修改 name', 9, 1);
 COMMIT;
 
 -- ----------------------------
