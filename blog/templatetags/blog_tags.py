@@ -39,7 +39,7 @@ def get_total_books():
 
 @register.simple_tag
 def base_url():
-    base_url = 'http://www.eastnotes.com'
+    base_url = 'http://www.litaowang.com'
     return base_url
 
 
